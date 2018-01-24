@@ -24,7 +24,7 @@ ad_sc_data = None
 csv_dict = {}
 root_tag = tree.getroot()
 input_file = open(output, "wb")
-csv_header = ['external_channel_ref','utc_consume_start_epoch','utc_consume_stop_epoch','timeshift','channel_audio_language','external_device_ref','std_tz_offset','local_tz_offset','is_first_session_chunk','start_cause_string','start_result_string','is_last_session_chunk','end_cause_string','external_consumption_method_ref','is_complete','session_chunk_id','full_session_id']
+csv_header = ['col1','col2','col3','col4','col5']
 dict_writer = csv.DictWriter(input_file, delimiter='|', fieldnames=csv_header)
 all_channel_tags = root_tag.getchildren()[1:]
 count = 0
