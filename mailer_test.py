@@ -24,12 +24,11 @@ from email import Encoders
 #          server  : local server for sending the mail
 # Returns: None
 #  Raises: n/a
-#    Desc: This functions invokes for sending the mail status for the processing either sucess/fail
+#    Desc: This functions invokes for sending the mail status for the processing either sucsess/fail
 ##########################################################
-execute=commands.getstatusoutput("ls -ld -h /mnt/demo_data/20150826/AMS/* | egrep 1a | awk '{print $9}'")
+
 output=commands.getstatusoutput("cat tmpx")[1]
 
-#print a[1]
 def send_mail(send_from, send_to, subject, text, cc=[], bcc=[], files=None, tar_path=None, server=""):
     try:
         msg = MIMEMultipart()
@@ -74,65 +73,22 @@ def send_mail(send_from, send_to, subject, text, cc=[], bcc=[], files=None, tar_
 
 
 html = """\
-
 <html>
-<head>
-<style>
-table, th, td
-table, th, td
-{{border: 1px solid black;}}
-</style>
-
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-</head>
 <body>
-
-Hi Team,
-
-<br/> <br/>
-
-Folder created for $today at the following path $download_directory/$today and its size is $fullsize
-<br/> <br/>
-Below is the list of Files received Today
-<br/> <br/>
-
-
-#Table definition starts here
-<table>
-<tr>
-<td><b> Folder Name </b></td>
-<td><b> File Name  </b></td>
-<td><b> Size </b></td>
-</tr>
-<tr>
-<td>%fcs1 AMS %fce1</td>
-<td>
-%s
-</td>
-
-<td>
-
-<br><br><h1>{output}</h1><br>
-
-</td>
-
-</tr>
-
-</table>
-<br/> <br/> <br/> <br/> 
-$nct<br/>$nct1
-<br/> <br/>
-
-Regards
-<br/>
-System Team
-
+Hello, </br>
+This is the test email.
 </body>
 </html>
-
 """.format(output=output)
 
-send_mail("abhijeetmote@gmail.com", ["abhijeetmote@gmail.com"], "test", html , cc=[], bcc=[], files="/home/abhijeet/testing/mail.py,/home/abhijeet/testing/finalValid.py", tar_path=None, server="localhost")
-##send_mail(send_from, send_to, subject, text, cc=[], bcc=[], files=None, tar_path=None, server="localhost")
+send_from = "abhijeetmote@gmail.com"
+send_to =  ["abhijeetmote@gmail.com"]
+subject = "test"
+text = html
+cc=[]
+bcc=[]
+files="finalValid.py"
+tar_path=None
+server="localhost"
 
+send_mail(send_from, send_to, subject, text, cc, bcc, files, tar_path, server)
